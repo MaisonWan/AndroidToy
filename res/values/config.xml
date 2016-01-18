@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<bool name="test_switch_phone_state">true</bool>    
+	<bool name="test_switch_surface">true</bool>
+	<bool name="test_switch_inputtext">true</bool>
+	<bool name="test_switch_contacts">false</bool>
+	<bool name="test_color_overlay">false</bool>
+	<bool name="test_layer_blending">false</bool>
+	<bool name="test_system_root">false</bool>
+	<bool name="test_capitalize">true</bool>
+	<bool name="test_image_cache">true</bool>
+	<bool name="test_convert_sogou_image">false</bool>
+	<bool name="test_switch_icon">false</bool>
+	<bool name="test_lock">true</bool>
+	<bool name="test_web">true</bool>
+	<bool name="test_sms">false</bool>
+	
+</resources>
