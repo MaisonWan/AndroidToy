@@ -70,6 +70,7 @@
         <activity
             android:name=".activity.ProcessListActivity"
             android:exported="false" />
+        <activity android:name=".activity.ProcessDetailActivity"></activity>
     </application>
 
 </manifest>

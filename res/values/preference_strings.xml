@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="preference_phone_state_summary">显示手机当前的参数</string>
-    <string name="preference_phone_state_title">手机状态测试</string>
+    <string name="preference_phone_state_title">手机参数检测</string>
     <string name="preference_phone_state_key">preference_phone_state_key</string>
     
     <string name="preference_input_text_summary">测试回车按键状态和文本框键盘切换</string>
