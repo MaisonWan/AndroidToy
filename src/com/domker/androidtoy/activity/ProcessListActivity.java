@@ -70,10 +70,11 @@ public class ProcessListActivity extends Activity {
             String name = editTextPackageName.getText().toString();
             List<ProcessManager.ProcessInfo> list = new ArrayList<ProcessManager.ProcessInfo>();
             for (ProcessManager.ProcessInfo info : processInfoList) {
-                if (info.appName.contains(name)) {
-                    // 包括的时候为搜索
-                    list.add(info);
-                }
+				if (info.appName.contains(name)
+						|| info.packageName.contains(name)) {
+					// 包括的时候为搜索
+					list.add(info);
+				}
             }
             if (list.isEmpty()) {
                 adapter.setList(processInfoList);
