@@ -56,5 +56,12 @@
         android:summary="@string/preference_switch_icon_test_summary"
         android:title="@string/preference_switch_icon_test_title" >
     </CheckBoxPreference>
+    
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_system_root"
+        android:key="@string/preference_system_root_key"
+        android:summary="@string/preference_system_root_summary"
+        android:title="@string/preference_system_root_title" >
+    </CheckBoxPreference>
 
 </PreferenceScreen>

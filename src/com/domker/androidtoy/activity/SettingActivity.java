@@ -31,7 +31,12 @@
  */
 package com.domker.androidtoy.activity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -49,98 +54,62 @@ import com.domker.androidtoy.R;
  * 
  */
 public class SettingActivity extends PreferenceActivity {
-
+	private static Map<Class<? extends Activity>, ConfigValue> map = new HashMap<Class<? extends Activity>, ConfigValue>();
+	
+	static {
+		map.put(PhoneStateActivity.class, new ConfigValue(R.string.preference_phone_state_key, R.bool.test_switch_phone_state));
+		map.put(InputTextActivity.class, new ConfigValue(R.string.preference_input_text_key, R.bool.test_switch_inputtext));
+		map.put(ColorOverLayActivity.class, new ConfigValue(R.string.preference_color_overlay_key, R.bool.test_color_overlay));
+		map.put(LayerBlendingActivity.class, new ConfigValue(R.string.preference_layer_blending_key, R.bool.test_layer_blending));
+		map.put(SurfaceActivity.class, new ConfigValue(R.string.preference_surface_test_key, R.bool.test_switch_surface));
+		map.put(CapitalizeActivity.class, new ConfigValue(R.string.preference_capitalize_test_key, R.bool.test_capitalize));
+		map.put(ImageCacheActivity.class, new ConfigValue(R.string.preference_image_cache_test_key, R.bool.test_image_cache));
+		map.put(SwitchIconActivity.class, new ConfigValue(R.string.preference_switch_icon_test_key, R.bool.test_switch_icon));
+		map.put(LockActivity.class, new ConfigValue(R.string.preference_lock_test_key, R.bool.test_lock));
+		map.put(SMSActivity.class, new ConfigValue(R.string.preference_sms_test_key, R.bool.test_sms));
+		map.put(SystemRootActivity.class, new ConfigValue(R.string.preference_system_root_key, R.bool.test_system_root));
+	}
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.addPreferencesFromResource(R.layout.setting);
 	}
-
-	public static boolean getPhontState(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_phone_state_key),
-						context.getResources().getBoolean(
-								R.bool.test_switch_phone_state));
-	}
-
-	public static boolean getInputText(Context context) {
-		return PreferenceManager.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_input_text_key),
-						context.getResources().getBoolean(
-								R.bool.test_switch_inputtext));
-	}
-
-	public static boolean getColorOverlay(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_color_overlay_key),
-						context.getResources().getBoolean(
-								R.bool.test_color_overlay));
-	}
-
-	public static boolean getLayerBlend(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_layer_blending_key),
-						context.getResources().getBoolean(
-								R.bool.test_layer_blending));
+	
+	/** 
+	 * 返回当前Activity是否显示
+	 * 
+	 * @param context
+	 * @param c
+	 * @return boolean 
+	 */
+	public static boolean isShown(Context context, Class<? extends Activity> c) {
+		SharedPreferences preference = PreferenceManager.getDefaultSharedPreferences(context);
+		ConfigValue values = map.get(c);
+		String key = context.getString(values.keyName);
+		boolean defaultValue = context.getResources().getBoolean(values.defaultValue);
+		return preference.getBoolean(key, defaultValue);
 	}
 	
-	public static boolean getSurfaceViewTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_surface_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_switch_surface));
-	}
+	/** 
+	 * 配置的值
+	 * 
+	 * @ClassName: ConfigValue 
+	 * @author wanlipeng
+	 * @date 2016年1月19日 下午5:33:33  
+	 */
+	public static final class ConfigValue {
 
-	public static boolean getCapitalizeTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_capitalize_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_capitalize));
-	}
-	
-	public static boolean getImageCacheTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_image_cache_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_image_cache));
-	}
-	
-	public static boolean getSwitchIconTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_switch_icon_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_switch_icon));
-	}
-	
-	public static boolean getLockTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_lock_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_lock));
-	}
-	
-	public static boolean getSMSTest(Context context) {
-		return PreferenceManager
-				.getDefaultSharedPreferences(context)
-				.getBoolean(
-						context.getString(R.string.preference_sms_test_key),
-						context.getResources().getBoolean(
-								R.bool.test_sms));
+		public ConfigValue() {
+		}
+
+		public ConfigValue(int keyName, int defaultValue) {
+			this.keyName = keyName;
+			this.defaultValue = defaultValue;
+		}
+
+		public int keyName;
+		public int defaultValue;
 	}
 }

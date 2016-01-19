@@ -115,20 +115,21 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	
 	private void initData() {
 		activityList.clear();
-		activityList.add(new CaseActivity(PhoneStateActivity.class, R.string.preference_phone_state_title, SettingActivity.getPhontState(this)));
-		activityList.add(new CaseActivity(SurfaceActivity.class, R.string.preference_surface_test_title, SettingActivity.getSurfaceViewTest(this)));
-		activityList.add(new CaseActivity(InputTextActivity.class, R.string.preference_input_text_title, SettingActivity.getInputText(this)));
-		activityList.add(new CaseActivity(ColorOverLayActivity.class, R.string.preference_color_overlay_title, SettingActivity.getColorOverlay(this)));
-		activityList.add(new CaseActivity(LayerBlendingActivity.class, R.string.preference_layer_blending_title, SettingActivity.getLayerBlend(this)));
-		activityList.add(new CaseActivity(SystemRootActivity.class, R.string.preference_system_root_title, getResources().getBoolean(R.bool.test_system_root)));
-		activityList.add(new CaseActivity(CapitalizeActivity.class, R.string.preference_capitalize_test_title, SettingActivity.getCapitalizeTest(this)));
+		addActivityList(PhoneStateActivity.class, R.string.preference_phone_state_title);
+		addActivityList(InputTextActivity.class, R.string.preference_input_text_title);
+		addActivityList(ColorOverLayActivity.class, R.string.preference_color_overlay_title);
+		addActivityList(LayerBlendingActivity.class, R.string.preference_layer_blending_title);
+		addActivityList(SurfaceActivity.class, R.string.preference_surface_test_title);
+		addActivityList(CapitalizeActivity.class, R.string.preference_capitalize_test_title);
+		addActivityList(ImageCacheActivity.class, R.string.preference_image_cache_test_title);
+		addActivityList(SwitchIconActivity.class, R.string.preference_switch_icon_test_title);
+		addActivityList(LockActivity.class, R.string.preference_lock_test_title);
+		addActivityList(SMSActivity.class, R.string.preference_sms_test_title);
+		addActivityList(SystemRootActivity.class, R.string.preference_system_root_title);
+
 		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
 		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));
-		activityList.add(new CaseActivity(SMSActivity.class, R.string.preference_sms_test_title, SettingActivity.getSMSTest(this)));
 		activityList.add(new CaseActivity(DrawCustomFontActivity.class, R.string.preference_font_test_title, true));
-		activityList.add(new CaseActivity(ImageCacheActivity.class, R.string.preference_image_cache_test_title, SettingActivity.getImageCacheTest(this)));
-		activityList.add(new CaseActivity(SwitchIconActivity.class, R.string.preference_switch_icon_test_title, SettingActivity.getSwitchIconTest(this)));
-		activityList.add(new CaseActivity(LockActivity.class, R.string.preference_lock_test_title, SettingActivity.getLockTest(this)));
 		activityList.add(new CaseActivity(ProcessListActivity.class, R.string.preference_process_test_title, true));
 		
 		shownButtonTextList.clear();
@@ -138,6 +139,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				shownButtonTextList.add(caseActivity.nameResId);
 			}
 		}
+	}
+	
+	private void addActivityList(Class<? extends Activity> c, int titleResId) {
+		activityList.add(new CaseActivity(c, titleResId, SettingActivity.isShown(this, c)));
 	}
 	
 	@Override
