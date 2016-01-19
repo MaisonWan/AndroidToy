@@ -126,11 +126,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		addActivityList(LockActivity.class, R.string.preference_lock_test_title);
 		addActivityList(SMSActivity.class, R.string.preference_sms_test_title);
 		addActivityList(SystemRootActivity.class, R.string.preference_system_root_title);
+		addActivityList(ProcessListActivity.class, R.string.preference_process_test_title);
 
 		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
 		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));
 		activityList.add(new CaseActivity(DrawCustomFontActivity.class, R.string.preference_font_test_title, true));
-		activityList.add(new CaseActivity(ProcessListActivity.class, R.string.preference_process_test_title, true));
 		
 		shownButtonTextList.clear();
 		for (int i = 0; i < activityList.size(); i++) {

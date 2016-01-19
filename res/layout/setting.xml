@@ -63,5 +63,12 @@
         android:summary="@string/preference_system_root_summary"
         android:title="@string/preference_system_root_title" >
     </CheckBoxPreference>
+    
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_process"
+        android:key="@string/preference_process_test_key"
+        android:summary="@string/preference_process_test_summary"
+        android:title="@string/preference_process_test_title" >
+    </CheckBoxPreference>
 
 </PreferenceScreen>

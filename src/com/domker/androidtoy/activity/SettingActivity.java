@@ -68,6 +68,7 @@ public class SettingActivity extends PreferenceActivity {
 		map.put(LockActivity.class, new ConfigValue(R.string.preference_lock_test_key, R.bool.test_lock));
 		map.put(SMSActivity.class, new ConfigValue(R.string.preference_sms_test_key, R.bool.test_sms));
 		map.put(SystemRootActivity.class, new ConfigValue(R.string.preference_system_root_key, R.bool.test_system_root));
+		map.put(ProcessListActivity.class, new ConfigValue(R.string.preference_process_test_key, R.bool.test_process));
 	}
 	
 	@SuppressWarnings("deprecation")
