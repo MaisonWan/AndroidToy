@@ -12,10 +12,16 @@
 
         <TextView
             android:id="@+id/textViewPiano"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start|center_vertical"
-            android:layout_weight="15" />
+            android:layout_gravity="top|left" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
 
         <Button
             android:id="@+id/buttonPlay"
