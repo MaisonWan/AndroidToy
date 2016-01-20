@@ -46,6 +46,11 @@ import android.util.Log;
  * 
  */
 public class RootUtil {
+	/** 
+	 * 测试系统是否被root
+	 * 
+	 * @return boolean 
+	 */
 	public static synchronized boolean getRootAuth() {
 		Process process = null;
 		DataOutputStream os = null;

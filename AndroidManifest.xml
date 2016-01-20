@@ -71,6 +71,7 @@
             android:name=".activity.ProcessListActivity"
             android:exported="false" />
         <activity android:name=".activity.ProcessDetailActivity"></activity>
+        <activity android:name=".activity.PianoActivity"></activity>
     </application>
 
 </manifest>

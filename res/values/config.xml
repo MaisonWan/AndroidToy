@@ -15,5 +15,6 @@
 	<bool name="test_web">true</bool>
 	<bool name="test_sms">false</bool>
 	<bool name="test_process">true</bool>
+	<bool name="test_piano">true</bool>
 	
 </resources>

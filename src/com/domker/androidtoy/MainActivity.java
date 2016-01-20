@@ -61,6 +61,7 @@ import com.domker.androidtoy.activity.LayerBlendingActivity;
 import com.domker.androidtoy.activity.LockActivity;
 import com.domker.androidtoy.activity.MenuAdapter;
 import com.domker.androidtoy.activity.PhoneStateActivity;
+import com.domker.androidtoy.activity.PianoActivity;
 import com.domker.androidtoy.activity.ProcessListActivity;
 import com.domker.androidtoy.activity.SMSActivity;
 import com.domker.androidtoy.activity.SettingActivity;
@@ -127,6 +128,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		addActivityList(SMSActivity.class, R.string.preference_sms_test_title);
 		addActivityList(SystemRootActivity.class, R.string.preference_system_root_title);
 		addActivityList(ProcessListActivity.class, R.string.preference_process_test_title);
+		addActivityList(PianoActivity.class, R.string.preference_piano_test_title);
 
 		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
 		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));
