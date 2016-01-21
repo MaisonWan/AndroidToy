@@ -44,6 +44,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.domker.androidtoy.R;
+import com.domker.androidtoy.sound.SoundManager;
 
 /**
  * 钢琴的一个测试，弹奏曲目
@@ -53,6 +54,7 @@ import com.domker.androidtoy.R;
  * @date 2016年1月20日 下午5:00:31
  */
 public class PianoActivity extends Activity {
+	private SoundManager soundManager = null;
 	
 	private OnClickListener onPianoKeyClickListener = new OnClickListener() {
 
@@ -61,6 +63,7 @@ public class PianoActivity extends Activity {
 			switch (v.getId()) {
 			case R.id.buttonPlay:
 				// 播放按钮
+				playKeys();
 				break;
 			case R.id.buttonClear:
 				// 清空按钮
@@ -93,6 +96,7 @@ public class PianoActivity extends Activity {
 		setContentView(R.layout.piano_layout);
 		
 		initPianoButtons();
+		soundManager = new SoundManager(this);
 	}
 	
 	private void initPianoButtons() {
@@ -120,9 +124,20 @@ public class PianoActivity extends Activity {
 		if (TextUtils.isEmpty(show)) {
 			mTextShow.setText(key);
 		} else {
-			mTextShow.setText(show + ", " + key);
+			mTextShow.setText(show + " " + key);
 		}
 		keys.add(key);
+	}
+	
+	private void playKeys() {
+		for (String key : keys) {
+			soundManager.playSound(key);
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	/** 
