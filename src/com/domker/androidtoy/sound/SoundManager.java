@@ -56,6 +56,8 @@ public class SoundManager {
 	private SoundPool mSoundPool = null;
 	private float volume = 1;
 	private Map<String, Integer> soundResMap = new HashMap<String, Integer>();
+	private String[] resKeyName = { "1", "2", "3", "4", "5", "6", "7", "21",
+			"22", "23", "24", "25", "26" };
 
 	public SoundManager(Context mContext) {
 		this.mContext = mContext;
@@ -83,17 +85,20 @@ public class SoundManager {
 	private void initSoundPool() {
 		if (mSoundPool == null) {
 			// 判断系统sdk版本，如果版本超过21，调用第一种
-//			if (Build.VERSION.SDK_INT >= 21) {
-//				SoundPool.Builder builder = new SoundPool.Builder();
-//				builder.setMaxStreams(2);// 传入音频数量
-//				// AudioAttributes是一个封装音频各种属性的方法
-//				AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
-//				attrBuilder.setLegacyStreamType(AudioManager.STREAM_MUSIC);// 设置音频流的合适的属性
-//				builder.setAudioAttributes(attrBuilder.build());// 加载一个AudioAttributes
-//				mSoundPool = builder.build();
-//			} else {
+			if (Build.VERSION.SDK_INT >= 21) {
+				SoundPool.Builder builder = new SoundPool.Builder();
+				builder.setMaxStreams(2);// 传入音频数量
+				// AudioAttributes是一个封装音频各种属性的方法
+				AudioAttributes.Builder attrBuilder = new AudioAttributes.Builder();
+				attrBuilder.setLegacyStreamType(AudioManager.STREAM_MUSIC);// 设置音频流的合适的属性
+				builder.setAudioAttributes(attrBuilder.build());// 加载一个AudioAttributes
+				mSoundPool = builder.build();
+			} else {
 				mSoundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
-//			}
+			}
+		}
+		for (String key : resKeyName) {
+			initRes(key);
 		}
 	}
 
@@ -107,6 +112,16 @@ public class SoundManager {
 		if (soundResMap.containsKey(key)) {
 			return soundResMap.get(key);
 		}
+		return initRes(key);
+	}
+	
+	/** 
+	 * 初始化资源
+	 * 
+	 * @param key
+	 * @return int 
+	 */
+	private int initRes(String key) {
 		AssetFileDescriptor afd;
 		try {
 			afd = mContext.getAssets().openFd("piano/" + key + ".mp3");
@@ -115,6 +130,15 @@ public class SoundManager {
 			return soundId;
 		} catch (IOException e) {
 			return 0;
+		}
+	}
+	
+	/** 
+	 * 销毁资源
+	 */
+	public void onDestroy() {
+		if (mSoundPool != null) {
+			mSoundPool.release();
 		}
 	}
 }

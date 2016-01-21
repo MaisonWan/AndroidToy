@@ -69,6 +69,7 @@ public class PianoActivity extends Activity {
 				// 清空按钮
 				clearKeyShow();
 				break;
+			case R.id.buttonSplite:
 			default:
 				if (v instanceof Button) {
 					Button button = (Button) v;
@@ -99,6 +100,13 @@ public class PianoActivity extends Activity {
 		soundManager = new SoundManager(this);
 	}
 	
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		soundManager.onDestroy();
+	}
+
+
 	private void initPianoButtons() {
 		for (int id : buttonIds) {
 			initButton(id);
@@ -108,6 +116,7 @@ public class PianoActivity extends Activity {
 		// init play key
 		this.findViewById(R.id.buttonPlay).setOnClickListener(onPianoKeyClickListener);
 		this.findViewById(R.id.buttonClear).setOnClickListener(onPianoKeyClickListener);
+		this.findViewById(R.id.buttonSplite).setOnClickListener(onPianoKeyClickListener);
 	}
 	
 	private void initButton(int buttonId) {
@@ -131,9 +140,14 @@ public class PianoActivity extends Activity {
 	
 	private void playKeys() {
 		for (String key : keys) {
-			soundManager.playSound(key);
+			float count = 1;
+			if ("|".equals(key)) {
+				count = 1.25f;
+			} else {
+				soundManager.playSound(key);
+			}
 			try {
-				Thread.sleep(300);
+				Thread.sleep((int)(300 * count));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
