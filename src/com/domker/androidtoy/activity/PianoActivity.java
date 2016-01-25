@@ -142,7 +142,7 @@ public class PianoActivity extends Activity {
 		for (String key : keys) {
 			float count = 1;
 			if ("|".equals(key)) {
-				count = 1.25f;
+				count = 0.25f;
 			} else {
 				soundManager.playSound(key);
 			}
