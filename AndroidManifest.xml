@@ -72,6 +72,7 @@
             android:exported="false" />
         <activity android:name=".activity.ProcessDetailActivity"></activity>
         <activity android:name=".activity.PianoActivity"></activity>
+        <activity android:name=".activity.WebpActivity"></activity>
     </application>
 
 </manifest>

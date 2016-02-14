@@ -68,6 +68,7 @@ import com.domker.androidtoy.activity.SettingActivity;
 import com.domker.androidtoy.activity.SurfaceActivity;
 import com.domker.androidtoy.activity.SwitchIconActivity;
 import com.domker.androidtoy.activity.SystemRootActivity;
+import com.domker.androidtoy.activity.WebpActivity;
 
 /**
  * 测试小工具的集合
@@ -129,6 +130,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		addActivityList(SystemRootActivity.class, R.string.preference_system_root_title);
 		addActivityList(ProcessListActivity.class, R.string.preference_process_test_title);
 		addActivityList(PianoActivity.class, R.string.preference_piano_test_title);
+		addActivityList(WebpActivity.class, R.string.preference_webp_test_title);
 
 		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
 		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));

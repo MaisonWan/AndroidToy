@@ -70,6 +70,7 @@ public class SettingActivity extends PreferenceActivity {
 		map.put(SystemRootActivity.class, new ConfigValue(R.string.preference_system_root_key, R.bool.test_system_root));
 		map.put(ProcessListActivity.class, new ConfigValue(R.string.preference_process_test_key, R.bool.test_process));
 		map.put(PianoActivity.class, new ConfigValue(R.string.preference_piano_test_key, R.bool.test_piano));
+		map.put(WebpActivity.class, new ConfigValue(R.string.preference_webp_test_key, R.bool.test_webp));
 	}
 	
 	@SuppressWarnings("deprecation")

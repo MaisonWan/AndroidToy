@@ -63,4 +63,8 @@
     <string name="preference_piano_test_summary">关于钢琴弹奏的测试</string>
     <string name="preference_piano_test_title">钢琴弹奏</string>
     <string name="preference_piano_test_key">preference_piano_test_key</string>
+    
+    <string name="preference_webp_test_summary">关于WebP绘制的测试</string>
+    <string name="preference_webp_test_title">WebP绘制</string>
+    <string name="preference_webp_test_key">preference_webp_test_key</string>
 </resources>
