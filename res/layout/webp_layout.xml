@@ -18,7 +18,7 @@
     </LinearLayout>
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <LinearLayout
@@ -35,7 +35,7 @@
                 android:id="@+id/imageViewWebp"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter" />
 
             <TextView
                 android:id="@+id/textViewNormal"
@@ -46,7 +46,8 @@
                 android:id="@+id/imageViewNormal"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitCenter"/>
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
         </LinearLayout>
     </ScrollView>
 
