@@ -81,14 +81,14 @@ public class WebpActivity extends Activity {
 	private void loadImage() {
 		// WebP
 		long begin = System.currentTimeMillis();
-		if (Build.VERSION.SDK_INT >= 14) {
-			mImageViewNormal.setImageResource(R.drawable.image_webp);
-		} else {
+//		if (Build.VERSION.SDK_INT >= 14) {
+//			mImageViewNormal.setImageResource(R.drawable.image_webp);
+//		} else {
 			InputStream rawImageStream = getResources().openRawResource(R.drawable.image_webp);
 			byte[] data = WebPUtil.streamToBytes(rawImageStream);
 			final Bitmap webpBitmap = WebPUtil.webpToBitmap(data);
 			mImageViewWebp.setImageBitmap(webpBitmap);
-		}
+//		}
 		long end = System.currentTimeMillis();
 		mTextViewWebp.setText(String.format("WebP: %dms", end - begin));
 		
