@@ -16,6 +16,7 @@ public class PeanoView extends View {
 	private Paint paint = null;
 	private boolean hasStart = false;
 	private int level = 1;
+	private int color = Color.BLACK;
 	private int startX = 0;
 	private int startY = 0;
 
@@ -36,7 +37,7 @@ public class PeanoView extends View {
 
 	private void init() {
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		paint.setColor(Color.BLUE);
+		paint.setColor(color);
 	}
 
 	public int getLevel() {
@@ -52,7 +53,16 @@ public class PeanoView extends View {
 	}
 
 	public void setLineWidth(int lineWidth) {
-		paint.setStrokeWidth(lineWidth);
+		this.paint.setStrokeWidth(lineWidth);
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
+		this.paint.setColor(color);
 	}
 
 	@Override
