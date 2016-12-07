@@ -19,5 +19,8 @@
     <string name="title_activity_process_detail">ProcessDetailActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    
+    <string name="size">大小</string>
+    <string name="width">宽度</string>
 
 </resources>

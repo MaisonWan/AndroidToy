@@ -31,7 +31,10 @@
  */
 package com.domker.androidtoy.view;
 
+import com.domker.androidtoy.R;
+
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -83,6 +86,7 @@ public class MoveSurfaceView extends SurfaceView implements Callback {
 	public void surfaceCreated(SurfaceHolder holder) {
 		this.thread.isRunning = true;
 		this.thread.start();
+		BitmapFactory.decodeResource(getResources(), R.drawable.bottom_button_down);
 	}
 
 	/*

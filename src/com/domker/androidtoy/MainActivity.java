@@ -53,6 +53,7 @@ import android.widget.TabHost;
 import com.domker.androidtoy.activity.CapitalizeActivity;
 import com.domker.androidtoy.activity.ColorOverLayActivity;
 import com.domker.androidtoy.activity.DrawCustomFontActivity;
+import com.domker.androidtoy.activity.GraphActivity;
 import com.domker.androidtoy.activity.ImageCacheActivity;
 import com.domker.androidtoy.activity.ImageToneActivity;
 import com.domker.androidtoy.activity.InputTextActivity;
@@ -131,10 +132,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		addActivityList(ProcessListActivity.class, R.string.preference_process_test_title);
 		addActivityList(PianoActivity.class, R.string.preference_piano_test_title);
 		addActivityList(WebpActivity.class, R.string.preference_webp_test_title);
+		addActivityList(GraphActivity.class, R.string.preference_graph_test_title);
 
-		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
-		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));
-		activityList.add(new CaseActivity(DrawCustomFontActivity.class, R.string.preference_font_test_title, true));
+		addActivityList(JSActivity.class, R.string.preference_web_test_title, false);
+		addActivityList(ImageToneActivity.class, R.string.preference_image_tone_test_title, true);
+		addActivityList(DrawCustomFontActivity.class, R.string.preference_font_test_title, true);
 		
 		shownButtonTextList.clear();
 		for (int i = 0; i < activityList.size(); i++) {
@@ -147,6 +149,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	
 	private void addActivityList(Class<? extends Activity> c, int titleResId) {
 		activityList.add(new CaseActivity(c, titleResId, SettingActivity.isShown(this, c)));
+	}
+	
+	private void addActivityList(Class<? extends Activity> c, int titleResId, boolean show) {
+		activityList.add(new CaseActivity(c, titleResId, show));
 	}
 	
 	@Override
@@ -228,11 +234,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	 * @date 2015年6月16日 下午7:14:05  
 	 */
 	public static final class CaseActivity {
-		public Class activityClass;
+		public Class<?> activityClass;
 		public int nameResId;
 		public boolean isShown = false;
 
-		public CaseActivity(Class activityClass, int nameResId, boolean isShown) {
+		public CaseActivity(Class<?> activityClass, int nameResId, boolean isShown) {
 			this.activityClass = activityClass;
 			this.nameResId = nameResId;
 			this.isShown = isShown;
