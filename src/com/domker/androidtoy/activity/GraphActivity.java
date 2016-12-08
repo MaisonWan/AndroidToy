@@ -1,18 +1,18 @@
 package com.domker.androidtoy.activity;
 
-import android.app.Activity;
+import java.util.ArrayList;
+
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.ActionBar.TabListener;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
-import android.widget.TextView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.domker.androidtoy.R;
-import com.domker.androidtoy.color.ColorPickerDialog;
-import com.domker.androidtoy.color.ColorPickerDialog.OnColorChangedListener;
-import com.domker.androidtoy.view.PeanoView;
+import com.domker.androidtoy.render.TabPagerAdapter;
 
 /**
  * 绘制图形学
@@ -21,17 +21,14 @@ import com.domker.androidtoy.view.PeanoView;
  * @author wanlipeng
  * @date 2016年12月7日 下午5:29:55
  */
-public class GraphActivity extends Activity implements OnSeekBarChangeListener, OnClickListener {
-	private SeekBar sizeBar = null;
-	private SeekBar widthBar = null;
-	private PeanoView peanoView = null;
-	private TextView textViewSize = null;
-	private TextView textViewWidth = null;
-	private ImageView imageViewColor = null;
+@SuppressWarnings("deprecation")
+public class GraphActivity extends FragmentActivity implements OnPageChangeListener, TabListener {
 	
-	private int size = 1;
-	private int width = 1;
-	
+	private ActionBar mActionBar;
+	private ViewPager mViewPager;
+	private TabPagerAdapter mAdapter;
+	private ArrayList<ActionBar.Tab> mTabs;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,71 +37,80 @@ public class GraphActivity extends Activity implements OnSeekBarChangeListener, 
 	}
 
 	private void init() {
-		sizeBar = (SeekBar) this.findViewById(R.id.seekBarSize);
-		widthBar = (SeekBar) this.findViewById(R.id.seekBarWidth);
-		peanoView = (PeanoView) this.findViewById(R.id.peanoView1);
-		textViewSize = (TextView) this.findViewById(R.id.textViewSize);
-		textViewWidth = (TextView) this.findViewById(R.id.textViewWidth);
-		imageViewColor = (ImageView) this.findViewById(R.id.imageViewColor);
-		findViewById(R.id.buttonSelectColor).setOnClickListener(this);
-		
-		sizeBar.setOnSeekBarChangeListener(this);
-		widthBar.setOnSeekBarChangeListener(this);
-		size = sizeBar.getProgress();
-		width = widthBar.getProgress();
-		imageViewColor.setBackgroundColor(peanoView.getColor());
+		initActionBar();
+		initTab();
+		initViewPager();
+	}
+
+	private void initActionBar() {
+		// 取得ActionBar
+		mActionBar = getActionBar();
+		// 以Tab方式导航
+		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		// 禁用ActionBar标题
+		mActionBar.setDisplayShowTitleEnabled(false);
+		// 禁用ActionBar图标
+		mActionBar.setDisplayUseLogoEnabled(false);
+		// 禁用ActionBar返回键
+		mActionBar.setDisplayShowHomeEnabled(false);
 	}
 	
-	/** 
-	 * 显示颜色选择器
-	 * 
-	 * @param initColor
-	 */
-	private void showColorSelector(int initColor) {
-		ColorPickerDialog picker = new ColorPickerDialog(this, initColor);
-		picker.setOnColorChangedListener(new OnColorChangedListener() {
-
-			@Override
-			public void onColorChanged(int color) {
-				peanoView.setColor(color);
-				imageViewColor.setBackgroundColor(color);
-				peanoView.invalidate();
-			}
-		});
-		picker.setAlphaSliderVisible(true);
-		picker.show();
+	private void initTab() {
+		// 添加Tabs
+		mTabs = new ArrayList<ActionBar.Tab>();
+		for (String name : TabPagerAdapter.TAB_NAMES) {
+			ActionBar.Tab tab = mActionBar.newTab();
+			tab.setText(name);
+			tab.setTabListener(this);
+			mTabs.add(tab);
+			mActionBar.addTab(tab);
+		}
+	}
+	
+	private void initViewPager() {
+		// 获取ViewPager
+		mViewPager = (ViewPager) findViewById(R.id.viewPager1);
+		// 初始化mAdapter
+		mAdapter = new TabPagerAdapter(getSupportFragmentManager());
+		mViewPager.setAdapter(mAdapter);
+		mViewPager.setOnPageChangeListener(this);
+		// 默认显示第二项
+		mViewPager.setCurrentItem(0);
+	}
+	
+	@Override
+	public void onPageScrollStateChanged(int arg0) {
+		
 	}
 
 	@Override
-	public void onProgressChanged(SeekBar seekBar, int progress,
-			boolean fromUser) {
-		if (seekBar == sizeBar) {
-			size = progress + 1;
-			this.textViewSize.setText(String.valueOf(size));
-		} else if (seekBar == widthBar) {
-			width = progress + 1;
-			this.textViewWidth.setText(String.valueOf(width));
+	public void onPageScrolled(int arg0, float arg1, int arg2) {
+
+	}
+
+	@Override
+	public void onPageSelected(int index) {
+		// 设置当前要显示的View
+		mViewPager.setCurrentItem(index);
+		// 选中对应的Tab
+		mActionBar.selectTab(mTabs.get(index));
+	}
+
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		if (mViewPager != null) {
+			mViewPager.setCurrentItem(tab.getPosition());
 		}
 	}
 
 	@Override
-	public void onStartTrackingTouch(SeekBar seekBar) {
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 
 	}
 
 	@Override
-	public void onStopTrackingTouch(SeekBar seekBar) {
-		peanoView.setLevel(size);
-		peanoView.setLineWidth(width);
-		peanoView.invalidate();
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.buttonSelectColor:
-			showColorSelector(peanoView.getColor());
-			break;
-		}
-	}
 }
