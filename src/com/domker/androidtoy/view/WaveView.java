@@ -92,7 +92,7 @@ public class WaveView extends View {
 
 	private Timer timer = null;
 	private HandlerTimerTask mTask = null;
-	Handler updateHandler = new Handler() {
+	private Handler updateHandler = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
@@ -100,8 +100,9 @@ public class WaveView extends View {
 			mMoveLen += SPEED;
 			// 水位上升
 			mLevelLine -= 0.1f;
-			if (mLevelLine < 0)
+			if (mLevelLine < 0) {
 				mLevelLine = 0;
+			}
 			mLeftSide += SPEED;
 			// 波形平移
 			for (int i = 0; i < mPointsList.size(); i++) {
@@ -156,25 +157,18 @@ public class WaveView extends View {
 
 	private void init() {
 		mPointsList = new ArrayList<Point>();
-		timer = new Timer();
-
-		mPaint = new Paint();
+		
+		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mPaint.setAntiAlias(true);
 		mPaint.setStyle(Style.FILL);
 		mPaint.setColor(Color.BLUE);
 
-		mTextPaint = new Paint();
+		mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mTextPaint.setColor(Color.WHITE);
 		mTextPaint.setTextAlign(Align.CENTER);
-		mTextPaint.setTextSize(30);
+		mTextPaint.setTextSize(50);
 
 		mWavePath = new Path();
-	}
-
-	@Override
-	public void onWindowFocusChanged(boolean hasWindowFocus) {
-		super.onWindowFocusChanged(hasWindowFocus);
-		// 开始波动
 	}
 
 	/** 
@@ -189,7 +183,7 @@ public class WaveView extends View {
 		if (timer == null) {
 			timer = new Timer();
 		}
-		timer.schedule(mTask, 0, 10);
+		timer.schedule(mTask, 0, 20);
 	}
 
 	/** 
@@ -255,9 +249,11 @@ public class WaveView extends View {
 		int i = 0;
 		mWavePath.moveTo(mPointsList.get(0).getX(), mPointsList.get(0).getY());
 		for (; i < mPointsList.size() - 2; i = i + 2) {
-			mWavePath.quadTo(mPointsList.get(i + 1).getX(),
-					mPointsList.get(i + 1).getY(), mPointsList.get(i + 2)
-							.getX(), mPointsList.get(i + 2).getY());
+			float x1 = mPointsList.get(i + 1).getX();
+			float y1 = mPointsList.get(i + 1).getY();
+			float x2 = mPointsList.get(i + 2).getX();
+			float y2 = mPointsList.get(i + 2).getY();
+			mWavePath.quadTo(x1, y1, x2, y2);
 		}
 		mWavePath.lineTo(mPointsList.get(i).getX(), mViewHeight);
 		mWavePath.lineTo(mLeftSide, mViewHeight);

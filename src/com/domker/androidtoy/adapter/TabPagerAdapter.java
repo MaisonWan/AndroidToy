@@ -30,7 +30,7 @@
  * \n
  * </tt>
  */
-package com.domker.androidtoy.render;
+package com.domker.androidtoy.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -12,7 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 
 import com.domker.androidtoy.R;
-import com.domker.androidtoy.render.TabPagerAdapter;
+import com.domker.androidtoy.adapter.TabPagerAdapter;
 
 /**
  * 绘制图形学
