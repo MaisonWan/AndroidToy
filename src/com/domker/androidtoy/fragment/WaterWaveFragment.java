@@ -33,37 +33,50 @@
 package com.domker.androidtoy.fragment;
 
 import com.domker.androidtoy.R;
+import com.domker.androidtoy.view.WaveView;
 
-/** 
+/**
  * 水纹
  * 
- * @ClassName: WaterWaveFragment 
+ * @ClassName: WaterWaveFragment
  * @author wanlipeng
- * @date 2016年12月8日 下午4:18:43  
+ * @date 2016年12月8日 下午4:18:43
  */
 public class WaterWaveFragment extends BaseFragment {
+	private WaveView waveView = null;
 
-	/*  
-	 * <p>Title: initLayoutResId</p> 
-	 * <p>Description: </p> 
-	 * @return 
-	 * @see com.domker.androidtoy.fragment.BaseFragment#initLayoutResId() 
+	/*
+	 * <p>Title: initLayoutResId</p> <p>Description: </p>
+	 * 
+	 * @return
+	 * 
+	 * @see com.domker.androidtoy.fragment.BaseFragment#initLayoutResId()
 	 */
 	@Override
 	protected int initLayoutResId() {
-		// TODO Auto-generated method stub
 		return R.layout.graph_water_wave_layout;
 	}
 
-	/*  
-	 * <p>Title: initSubViews</p> 
-	 * <p>Description: </p>  
-	 * @see com.domker.androidtoy.fragment.BaseFragment#initSubViews() 
+	/*
+	 * <p>Title: initSubViews</p> <p>Description: </p>
+	 * 
+	 * @see com.domker.androidtoy.fragment.BaseFragment#initSubViews()
 	 */
 	@Override
 	protected void initSubViews() {
-		// TODO Auto-generated method stub
+		waveView = (WaveView) findViewById(R.id.waveView1);
+	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		waveView.start();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		waveView.stop();
 	}
 
 }

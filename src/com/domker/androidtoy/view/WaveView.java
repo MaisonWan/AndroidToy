@@ -50,7 +50,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * 
+ * 水波的view
  * 
  * @ClassName: WaveView
  * @author wanlipeng
@@ -63,7 +63,7 @@ public class WaveView extends View {
 	/**
 	 * 水位线
 	 */
-	private float mLevelLine;
+	private float mLevelLine = 0.8f;
 
 	/**
 	 * 波浪起伏幅度
@@ -72,7 +72,7 @@ public class WaveView extends View {
 	/**
 	 * 波长
 	 */
-	private float mWaveWidth = 200;
+	private float mWaveWidth = 10;
 	/**
 	 * 被隐藏的最左边的波形
 	 */
@@ -82,7 +82,7 @@ public class WaveView extends View {
 	/**
 	 * 水波平移速度
 	 */
-	public static final float SPEED = 1.7f;
+	public static final float SPEED = 1.7f * 4;
 
 	private List<Point> mPointsList;
 	private Paint mPaint;
@@ -90,8 +90,8 @@ public class WaveView extends View {
 	private Path mWavePath;
 	private boolean isMeasured = false;
 
-	private Timer timer;
-	private MyTimerTask mTask;
+	private Timer timer = null;
+	private HandlerTimerTask mTask = null;
 	Handler updateHandler = new Handler() {
 
 		@Override
@@ -175,18 +175,37 @@ public class WaveView extends View {
 	public void onWindowFocusChanged(boolean hasWindowFocus) {
 		super.onWindowFocusChanged(hasWindowFocus);
 		// 开始波动
-		start();
 	}
 
-	private void start() {
+	/** 
+	 * 开始波动
+	 */
+	public void start() {
 		if (mTask != null) {
 			mTask.cancel();
 			mTask = null;
 		}
-		mTask = new MyTimerTask(updateHandler);
+		mTask = new HandlerTimerTask(updateHandler);
+		if (timer == null) {
+			timer = new Timer();
+		}
 		timer.schedule(mTask, 0, 10);
 	}
 
+	/** 
+	 * 停止波动
+	 */
+	public void stop() {
+		if (mTask != null) {
+			mTask.cancel();
+			mTask = null;
+		}
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
+	}
+	
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -252,43 +271,16 @@ public class WaveView extends View {
 				+ (mViewHeight - mLevelLine - mWaveHeight) / 2, mTextPaint);
 	}
 
-	class MyTimerTask extends TimerTask {
+	class HandlerTimerTask extends TimerTask {
 		Handler handler;
 
-		public MyTimerTask(Handler handler) {
+		public HandlerTimerTask(Handler handler) {
 			this.handler = handler;
 		}
 
 		@Override
 		public void run() {
 			handler.sendMessage(handler.obtainMessage());
-		}
-
-	}
-
-	class Point {
-		private float x;
-		private float y;
-
-		public float getX() {
-			return x;
-		}
-
-		public void setX(float x) {
-			this.x = x;
-		}
-
-		public float getY() {
-			return y;
-		}
-
-		public void setY(float y) {
-			this.y = y;
-		}
-
-		public Point(float x, float y) {
-			this.x = x;
-			this.y = y;
 		}
 
 	}
