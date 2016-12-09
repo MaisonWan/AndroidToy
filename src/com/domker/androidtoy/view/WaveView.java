@@ -63,7 +63,7 @@ public class WaveView extends View {
 	/**
 	 * 水位线
 	 */
-	private float mLevelLine = 0.8f;
+	private float mLevelLine = 1.8f;
 
 	/**
 	 * 波浪起伏幅度
@@ -82,7 +82,7 @@ public class WaveView extends View {
 	/**
 	 * 水波平移速度
 	 */
-	public static final float SPEED = 1.7f * 4;
+	public static final float SPEED = 1.7f * 10;
 
 	private List<Point> mPointsList;
 	private Paint mPaint;
@@ -267,8 +267,8 @@ public class WaveView extends View {
 				+ (mViewHeight - mLevelLine - mWaveHeight) / 2, mTextPaint);
 	}
 
-	class HandlerTimerTask extends TimerTask {
-		Handler handler;
+	private class HandlerTimerTask extends TimerTask {
+		private Handler handler;
 
 		public HandlerTimerTask(Handler handler) {
 			this.handler = handler;
