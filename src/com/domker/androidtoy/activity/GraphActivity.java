@@ -2,14 +2,13 @@ package com.domker.androidtoy.activity;
 
 import java.util.ArrayList;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
-import android.app.ActionBar.TabListener;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.design.widget.TabLayout;
+import android.support.design.widget.TabLayout.OnTabSelectedListener;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 import com.domker.androidtoy.R;
 import com.domker.androidtoy.adapter.TabPagerAdapter;
@@ -21,13 +20,14 @@ import com.domker.androidtoy.adapter.TabPagerAdapter;
  * @author wanlipeng
  * @date 2016年12月7日 下午5:29:55
  */
-@SuppressWarnings("deprecation")
-public class GraphActivity extends FragmentActivity implements OnPageChangeListener, TabListener {
+public class GraphActivity extends AppCompatActivity implements
+		OnPageChangeListener, OnTabSelectedListener {
 	
-	private ActionBar mActionBar;
 	private ViewPager mViewPager;
 	private TabPagerAdapter mAdapter;
-	private ArrayList<ActionBar.Tab> mTabs;
+	private ArrayList<TabLayout.Tab> mTabs;
+	private Toolbar toolbar;
+	private TabLayout tabLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,33 +43,30 @@ public class GraphActivity extends FragmentActivity implements OnPageChangeListe
 	}
 
 	private void initActionBar() {
-		// 取得ActionBar
-		mActionBar = getActionBar();
-		// 以Tab方式导航
-		mActionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		// 禁用ActionBar标题
-		mActionBar.setDisplayShowTitleEnabled(false);
-		// 禁用ActionBar图标
-		mActionBar.setDisplayUseLogoEnabled(false);
-		// 禁用ActionBar返回键
-		mActionBar.setDisplayShowHomeEnabled(false);
+		toolbar = (Toolbar) this.findViewById(R.id.toolBar);
+		tabLayout = (TabLayout) this.findViewById(R.id.tabLayout);
+		toolbar.setNavigationIcon(R.drawable.app_icon);
+		
+		setSupportActionBar(toolbar);
 	}
 	
 	private void initTab() {
 		// 添加Tabs
-		mTabs = new ArrayList<ActionBar.Tab>();
+		mTabs = new ArrayList<TabLayout.Tab>();
 		for (String name : TabPagerAdapter.TAB_NAMES) {
-			ActionBar.Tab tab = mActionBar.newTab();
+			TabLayout.Tab tab = tabLayout.newTab();
 			tab.setText(name);
-			tab.setTabListener(this);
 			mTabs.add(tab);
-			mActionBar.addTab(tab);
+			tabLayout.addTab(tab);
 		}
+		tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+		tabLayout.setOnTabSelectedListener(this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	private void initViewPager() {
 		// 获取ViewPager
-		mViewPager = (ViewPager) findViewById(R.id.viewPager1);
+		mViewPager = (ViewPager) findViewById(R.id.viewpager);
 		// 初始化mAdapter
 		mAdapter = new TabPagerAdapter(getSupportFragmentManager());
 		mViewPager.setAdapter(mAdapter);
@@ -93,24 +90,33 @@ public class GraphActivity extends FragmentActivity implements OnPageChangeListe
 		// 设置当前要显示的View
 		mViewPager.setCurrentItem(index);
 		// 选中对应的Tab
-		mActionBar.selectTab(mTabs.get(index));
+		mTabs.get(index).select();
 	}
 
+	/* (non-Javadoc)
+	 * @see android.support.design.widget.TabLayout.OnTabSelectedListener#onTabReselected(android.support.design.widget.TabLayout.Tab)
+	 */
 	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+	public void onTabReselected(TabLayout.Tab tab) {
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see android.support.design.widget.TabLayout.OnTabSelectedListener#onTabSelected(android.support.design.widget.TabLayout.Tab)
+	 */
+	@Override
+	public void onTabSelected(TabLayout.Tab tab) {
 		if (mViewPager != null) {
 			mViewPager.setCurrentItem(tab.getPosition());
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see android.support.design.widget.TabLayout.OnTabSelectedListener#onTabUnselected(android.support.design.widget.TabLayout.Tab)
+	 */
 	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
+	public void onTabUnselected(TabLayout.Tab tab) {
+		
 	}
 
 }
