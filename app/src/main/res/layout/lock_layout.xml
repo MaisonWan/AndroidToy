@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff444466" >
+
+    <com.domker.androidtoy.view.Lock9View
+        android:id="@+id/lock_9_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:lock9_lineColor="#ff006699"
+        app:lock9_lineWidth="8dp"
+        app:lock9_nodeOnSrc="@drawable/lock_9_view_node_highlighted"
+        app:lock9_nodeSrc="@drawable/lock_9_view_node_normal"
+        app:lock9_padding="28dp"
+        app:lock9_spacing="28dp" />
+
+</FrameLayout>

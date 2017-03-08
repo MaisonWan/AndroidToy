@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="preference_phone_state_summary">显示手机当前的参数</string>
+    <string name="preference_phone_state_title">手机参数检测</string>
+    <string name="preference_phone_state_key">preference_phone_state_key</string>
+    
+    <string name="preference_input_text_summary">测试回车按键状态和文本框键盘切换</string>
+    <string name="preference_input_text_title">文本框测试</string>
+    <string name="preference_input_text_key">preference_input_text_key</string>
+    
+    <string name="preference_color_overlay_summary">透明度和颜色叠加的测试</string>
+    <string name="preference_color_overlay_title">颜色合成测试</string>
+    <string name="preference_color_overlay_key">preference_color_overlay_key</string>
+    
+    <string name="preference_layer_blending_summary">图层混合测试</string>
+    <string name="preference_layer_blending_title">图层混合测试</string>
+    <string name="preference_layer_blending_key">preference_layer_blending_key</string>
+    
+    <string name="preference_system_root_summary">关于系统Root的测试</string>
+    <string name="preference_system_root_title">系统Root测试</string>
+    <string name="preference_system_root_key">preference_system_root_key</string>
+    
+    <string name="preference_surface_test_summary">关于Surface绘制的测试</string>
+    <string name="preference_surface_test_title">Surface绘制测试</string>
+    <string name="preference_surface_test_key">preference_surface_test_key</string>
+
+    <string name="preference_capitalize_test_summary">关于文本框属性的测试</string>
+    <string name="preference_capitalize_test_title">文本框属性测试</string>
+    <string name="preference_capitalize_test_key">preference_capitalize_test_key</string>
+    
+    <string name="preference_image_cache_test_summary">关于图片缓存的测试</string>
+    <string name="preference_image_cache_test_title">图片缓存测试</string>
+    <string name="preference_image_cache_test_key">preference_image_cache_test_key</string>
+    
+    <string name="preference_switch_icon_test_summary">关于替换应用图标的测试</string>
+    <string name="preference_switch_icon_test_title">替换应用图标测试</string>
+    <string name="preference_switch_icon_test_key">preference_switch_icon_test_key</string>
+    
+    <string name="preference_web_test_summary">关于web方式显示的测试</string>
+    <string name="preference_web_test_title">Web方式显示</string>
+    <string name="preference_web_test_key">preference_web_test_key</string>
+    
+    <string name="preference_image_tone_test_summary">关于图片色调饱和度、色相、亮度处理</string>
+    <string name="preference_image_tone_test_title">图片处理测试</string>
+    <string name="preference_image_tone_test_key">preference_image_tone_test_key</string>
+    
+    <string name="preference_sms_test_summary">关于系统短信读取和写入的测试</string>
+    <string name="preference_sms_test_title">短信联系人测试</string>
+    <string name="preference_sms_test_key">preference_sms_test_key</string>
+    
+    <string name="preference_font_test_summary">关于自定义字体的测试</string>
+    <string name="preference_font_test_title">绘制自定义字体测试</string>
+    <string name="preference_font_test_key">preference_font_test_key</string>
+    
+    <string name="preference_lock_test_summary">关于九宫锁屏的测试</string>
+    <string name="preference_lock_test_title">九宫锁屏测试</string>
+    <string name="preference_lock_test_key">preference_lock_test_key</string>
+    
+    <string name="preference_process_test_summary">关于程序列表的测试</string>
+    <string name="preference_process_test_title">程序列表测试</string>
+    <string name="preference_process_test_key">preference_process_test_key</string>
+    
+    <string name="preference_piano_test_summary">关于钢琴弹奏的测试</string>
+    <string name="preference_piano_test_title">钢琴弹奏</string>
+    <string name="preference_piano_test_key">preference_piano_test_key</string>
+    
+    <string name="preference_webp_test_summary">关于WebP绘制的测试</string>
+    <string name="preference_webp_test_title">WebP绘制</string>
+    <string name="preference_webp_test_key">preference_webp_test_key</string>
+</resources>

@@ -1,0 +1,78 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.domker.androidtoy"
+    android:installLocation="preferExternal"
+    android:versionCode="3"
+    android:versionName="1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="22" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name="com.domker.androidtoy.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.SurfaceActivity" >
+        </activity>
+        <activity android:name=".activity.PhoneStateActivity" >
+        </activity>
+        <activity android:name=".activity.InputTextActivity" >
+        </activity>
+        <activity android:name=".activity.ColorOverLayActivity" >
+        </activity>
+        <activity android:name=".activity.LayerBlendingActivity" >
+        </activity>
+        <activity android:name=".activity.SystemRootActivity" >
+        </activity>
+        <activity android:name=".activity.SettingActivity" >
+        </activity>
+        <activity
+            android:name=".activity.CapitalizeActivity"
+            android:configChanges="orientation" >
+        </activity>
+        <activity android:name=".activity.ImageCacheActivity" >
+        </activity>
+        <activity android:name=".activity.SogouImageConvertActivity" >
+        </activity>
+        <activity android:name=".activity.JSActivity" >
+        </activity>
+        <activity android:name=".activity.ImageToneActivity" >
+        </activity>
+        <activity android:name=".activity.SMSActivity" >
+        </activity>
+        <activity android:name=".activity.DrawCustomFontActivity" >
+        </activity>
+        <activity
+            android:name=".activity.SwitchIconActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LockActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ProcessListActivity"
+            android:exported="false" />
+        <activity android:name=".activity.ProcessDetailActivity"></activity>
+        <activity android:name=".activity.PianoActivity"></activity>
+        <activity android:name=".activity.WebpActivity"></activity>
+    </application>
+
+</manifest>

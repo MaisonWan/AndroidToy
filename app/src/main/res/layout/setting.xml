@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_switch_phone_state"
+        android:key="@string/preference_phone_state_key"
+        android:summary="@string/preference_phone_state_summary"
+        android:title="@string/preference_phone_state_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_switch_inputtext"
+        android:key="@string/preference_input_text_key"
+        android:summary="@string/preference_input_text_summary"
+        android:title="@string/preference_input_text_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_capitalize"
+        android:key="@string/preference_capitalize_test_key"
+        android:summary="@string/preference_capitalize_test_summary"
+        android:title="@string/preference_capitalize_test_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_color_overlay"
+        android:key="@string/preference_color_overlay_key"
+        android:summary="@string/preference_color_overlay_summary"
+        android:title="@string/preference_color_overlay_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_layer_blending"
+        android:key="@string/preference_layer_blending_key"
+        android:summary="@string/preference_layer_blending_summary"
+        android:title="@string/preference_layer_blending_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_switch_surface"
+        android:key="@string/preference_surface_test_key"
+        android:summary="@string/preference_surface_test_summary"
+        android:title="@string/preference_surface_test_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_image_cache"
+        android:key="@string/preference_image_cache_test_key"
+        android:summary="@string/preference_image_cache_test_summary"
+        android:title="@string/preference_image_cache_test_title" >
+    </CheckBoxPreference>
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_switch_icon"
+        android:key="@string/preference_switch_icon_test_key"
+        android:summary="@string/preference_switch_icon_test_summary"
+        android:title="@string/preference_switch_icon_test_title" >
+    </CheckBoxPreference>
+    
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_system_root"
+        android:key="@string/preference_system_root_key"
+        android:summary="@string/preference_system_root_summary"
+        android:title="@string/preference_system_root_title" >
+    </CheckBoxPreference>
+    
+    <CheckBoxPreference
+        android:defaultValue="@bool/test_process"
+        android:key="@string/preference_process_test_key"
+        android:summary="@string/preference_process_test_summary"
+        android:title="@string/preference_process_test_title" >
+    </CheckBoxPreference>
+
+</PreferenceScreen>
