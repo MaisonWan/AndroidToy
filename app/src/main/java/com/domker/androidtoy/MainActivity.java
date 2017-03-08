@@ -41,6 +41,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -77,7 +78,7 @@ import com.domker.androidtoy.activity.WebpActivity;
  * @date 2013-12-16 上午11:20:38
  * 
  */
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnItemClickListener {
 	private final int MENU_SETTING = 0x1;
 	private final int MENU_ABOUT = 0x2;
 
