@@ -17,5 +17,6 @@
 	<bool name="test_process">true</bool>
 	<bool name="test_piano">true</bool>
 	<bool name="test_webp">true</bool>
-	
+	<bool name="test_graph">true</bool>
+
 </resources>

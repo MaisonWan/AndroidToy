@@ -54,6 +54,7 @@ import android.widget.TabHost;
 import com.domker.androidtoy.activity.CapitalizeActivity;
 import com.domker.androidtoy.activity.ColorOverLayActivity;
 import com.domker.androidtoy.activity.DrawCustomFontActivity;
+import com.domker.androidtoy.activity.GraphActivity;
 import com.domker.androidtoy.activity.ImageCacheActivity;
 import com.domker.androidtoy.activity.ImageToneActivity;
 import com.domker.androidtoy.activity.InputTextActivity;
@@ -132,6 +133,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
 		addActivityList(ProcessListActivity.class, R.string.preference_process_test_title);
 		addActivityList(PianoActivity.class, R.string.preference_piano_test_title);
 		addActivityList(WebpActivity.class, R.string.preference_webp_test_title);
+		addActivityList(GraphActivity.class, R.string.preference_graph_test_title);
 
 		activityList.add(new CaseActivity(JSActivity.class, R.string.preference_web_test_title, false));
 		activityList.add(new CaseActivity(ImageToneActivity.class, R.string.preference_image_tone_test_title, true));
