@@ -98,6 +98,11 @@ public class PeanoFragment extends BaseFragment implements
 	}
 
 	@Override
+	protected void onShow() {
+
+	}
+
+	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.buttonSelectColor:

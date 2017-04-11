@@ -81,4 +81,9 @@ public abstract class BaseFragment extends Fragment {
 	 * 初始化子view
 	 */
 	protected abstract void initSubViews();
+
+	/**
+	 * 在显示的时候回调
+	 */
+	protected abstract void onShow();
 }

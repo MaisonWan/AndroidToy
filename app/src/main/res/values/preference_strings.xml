@@ -71,4 +71,8 @@
     <string name="preference_graph_test_summary">图形学的测试</string>
     <string name="preference_graph_test_title">图形学</string>
     <string name="preference_graph_test_key">preference_graph_test_key</string>
+
+    <string name="preference_control_test_summary">控件的测试</string>
+    <string name="preference_control_test_title">控件</string>
+    <string name="preference_control_test_key">preference_control_test_key</string>
 </resources>

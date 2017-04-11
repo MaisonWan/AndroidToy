@@ -23,4 +23,6 @@
     <string name="size">大小</string>
     <string name="width">宽度</string>
     <string name="color">颜色</string>
+    <string name="title_activity_control">ControlActivity</string>
+    <string name="action_settings">Settings</string>
 </resources>

@@ -72,6 +72,7 @@ public class SettingActivity extends PreferenceActivity {
 		map.put(PianoActivity.class, new ConfigValue(R.string.preference_piano_test_key, R.bool.test_piano));
 		map.put(WebpActivity.class, new ConfigValue(R.string.preference_webp_test_key, R.bool.test_webp));
 		map.put(GraphActivity.class, new ConfigValue(R.string.preference_graph_test_key, R.bool.test_graph));
+        map.put(ControlActivity.class, new ConfigValue(R.string.preference_control_test_key, R.bool.test_control));
 	}
 	
 	@SuppressWarnings("deprecation")

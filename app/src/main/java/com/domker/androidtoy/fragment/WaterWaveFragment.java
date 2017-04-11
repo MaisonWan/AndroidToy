@@ -68,6 +68,11 @@ public class WaterWaveFragment extends BaseFragment {
 	}
 
 	@Override
+	protected void onShow() {
+
+	}
+
+	@Override
 	public void onResume() {
 		super.onResume();
 		waveView.start();
