@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
@@ -95,12 +96,24 @@ public class PhoneStateActivity extends ListActivity {
 		
 		String sdkVersion = String.format("SDK Version : %s", util.getSdkVersion());
 		data.add(sdkVersion);
-		
-		String imei = String.format("IMEI : %s", util.getIMEI());
-		data.add(imei);
-		
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+			// 6.0以上新增，查看双卡信息
+			data.add(String.format("IMEI-1 : %s", util.getIMEI(0)));
+			data.add(String.format("IMEI-2 : %s", util.getIMEI(1)));
+		} else {
+			data.add(String.format("IMEI : %s", util.getIMEI()));
+		}
+
 		String imsi = String.format("IMSI : %s", util.getIMSI());
 		data.add(imsi);
+
+		String androidId = String.format("Android ID : %s", util.getAndroidID());
+		data.add(androidId);
+
+		String macAddress = String.format("Mac Address : %s", util.getMacAddress());
+		data.add(macAddress);
+
 		data.add("Screen Size : " + util.getScreenSize(this));
 		data.add("Scaled Density : " + util.getDPIDensity());
 		data.add("Density DPI : " + util.getDensityDpi());

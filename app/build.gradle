@@ -9,11 +9,11 @@ android {
         minSdkVersion 14
         targetSdkVersion 22
 
-        ndk {
-            moduleName "webp"
-            ldLibs "log"
-            abiFilters "armeabi", "armeabi-v7a", "x86"
-        }
+//        ndk {
+//            moduleName "webp"
+//            ldLibs "log"
+//            abiFilters "armeabi", "armeabi-v7a", "x86"
+//        }
     }
 
     buildTypes {
@@ -23,16 +23,16 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
-    externalNativeBuild {
-        ndkBuild {
-            path 'src/main/jni/Android.mk'
-        }
-    }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
+//    externalNativeBuild {
+//        ndkBuild {
+//            path 'src/main/jni/Android.mk'
+//        }
+//    }
 }
 
 dependencies {

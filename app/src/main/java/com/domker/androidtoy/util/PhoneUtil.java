@@ -1,34 +1,3 @@
-/**
- * @file PhoneUtil.java
- * @Package com.tencent.test.util
- * Description: TODO 
- * 
- * @author maisonwan
- * @since 1.0.0.0
- * @version 1.0.0.0
- * @date 2013-12-16
- * 
- *       \if TOSPLATFORM_CONFIDENTIAL_PROPRIETARY
- *       ================================
- *            \n Copyright (c) 2011
- *       maisonwan. All Rights Reserved.\n \n
- *       ==================================
- *       ==========================================\n \n Update History\n \n
- *       Author (Name[WorkID]) | Modification | Tracked Id | Description\n
- *       --------------------- | ------------ | ---------- |
- *       ------------------------\n maisonwan | 2013-12-16 | <xxxxxxxx>
- *       | Initial Created.\n \n \endif
- * 
- *       <tt>
- * \n
- * Release History:\n
- * \n
- * Author (Name[WorkID]) | ModifyDate | Version | Description \n
- * --------------------- | ---------- | ------- | -----------------------------\n
- * maisonwan |2013-12-16 | 1.0.0.0 | Initial created. \n
- * \n
- * </tt>
- */
 package com.domker.androidtoy.util;
 
 import java.io.BufferedReader;
@@ -47,6 +16,8 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Environment;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.Formatter;
@@ -63,6 +34,8 @@ import android.util.DisplayMetrics;
  * 
  */
 public class PhoneUtil {
+	private static final String NOT_AVAILABLE = "not available";
+
 	private Context mContext = null;
 	private TelephonyManager mTelephonyManager;
 	private static PhoneUtil phoneUtil = null;
@@ -99,71 +72,71 @@ public class PhoneUtil {
 	}
 
 	public String getIMEI() {
-		String myIMEI = mTelephonyManager.getDeviceId();
-		if (myIMEI != null) {
-			return isSameChar(myIMEI, '0') ? getAndroidID() : myIMEI;
-		} else {
-			WifiManager wifi = (WifiManager) mContext
-					.getSystemService(Context.WIFI_SERVICE);
-			WifiInfo info = wifi.getConnectionInfo();
-			if (info != null && info.getMacAddress() != null)
-				return info.getMacAddress();
-			return getAndroidID();
+		String imei = mTelephonyManager.getDeviceId();
+		if (imei == null) {
+			return NOT_AVAILABLE;
 		}
+		return imei;
+	}
+
+	@RequiresApi(api = Build.VERSION_CODES.M)
+	public String getIMEI(int index) {
+		String imei = mTelephonyManager.getDeviceId(index);
+		if (imei == null) {
+			return NOT_AVAILABLE;
+		}
+		return imei;
+	}
+
+	public String getMacAddress() {
+		WifiManager wifi = (WifiManager) mContext.getSystemService(Context.WIFI_SERVICE);
+		WifiInfo info = wifi.getConnectionInfo();
+		if (info != null && info.getMacAddress() != null) {
+			return info.getMacAddress();
+		}
+		return NOT_AVAILABLE;
 	}
 
 	public String getAndroidID() {
-		String androidID = android.provider.Settings.Secure.getString(
-				mContext.getContentResolver(),
-				android.provider.Settings.Secure.ANDROID_ID);
+		String androidID = Settings.Secure.getString(mContext.getContentResolver(), Settings.Secure.ANDROID_ID);
 		return androidID;
 	}
 
 	public String getIMSI() {
-		String myIMSI = mTelephonyManager.getSubscriberId();
-		if (TextUtils.isEmpty(myIMSI)) {
-			myIMSI = "310260000000000";
+		String imsi = mTelephonyManager.getSubscriberId();
+		if (TextUtils.isEmpty(imsi)) {
+			imsi = NOT_AVAILABLE;
 		}
-		return myIMSI;
+		return imsi;
 	}
 
-	private boolean isSameChar(String str, char c) {
-		if (str == null)
-			return true;
-		int length = str.length();
-		for (int i = 0; i < length; i++) {
-			if (str.charAt(i) != c)
-				return false;
-		}
-		return true;
-	}
-	
 	// -----------------------------------------------------------------------
 	/**
 	 * 系统sdk版本号
 	 * @return String
 	 */
 	public String getSdkVersion() {
-		return String.valueOf(Build.VERSION.SDK_INT);
+		return String.valueOf(android.os.Build.VERSION.SDK_INT);
 	}
 	
 	public List<String> getOSBuildInfo() {
-		List<String> data = new ArrayList<String>();
-		data.add("Product: " + android.os.Build.PRODUCT); 
-		data.add("CPU_ABI: " + android.os.Build.CPU_ABI); 
-		data.add("TAGS: " + android.os.Build.TAGS); 
-		data.add("VERSION_CODES.BASE: " + android.os.Build.VERSION_CODES.BASE); 
-		data.add("MODEL: " + android.os.Build.MODEL); 
-	    data.add("SDK: " + android.os.Build.VERSION.SDK); 
-	    data.add("VERSION.RELEASE: " + android.os.Build.VERSION.RELEASE); 
-	    data.add("DEVICE: " + android.os.Build.DEVICE); 
-	    data.add("DISPLAY: " + android.os.Build.DISPLAY); 
-	    data.add("BRAND: " + android.os.Build.BRAND); 
-	    data.add("BOARD: " + android.os.Build.BOARD); 
-	    data.add("FINGERPRINT: " + android.os.Build.FINGERPRINT); 
-	    data.add("ID: " + android.os.Build.ID); 
-	    data.add("MANUFACTURER: " + android.os.Build.MANUFACTURER); 
-	    data.add("USER: " + android.os.Build.USER);
+		List<String> data = new ArrayList<>();
+		data.add("SERIAL: " + Build.SERIAL);
+		data.add("Product: " + Build.PRODUCT);
+		data.add("CPU_ABI: " + Build.CPU_ABI);
+		data.add("TAGS: " + Build.TAGS); 
+		data.add("VERSION_CODES.BASE: " + Build.VERSION_CODES.BASE); 
+		data.add("MODEL: " + Build.MODEL); 
+	    data.add("SDK: " + Build.VERSION.SDK); 
+	    data.add("VERSION.RELEASE: " + Build.VERSION.RELEASE); 
+	    data.add("DEVICE: " + Build.DEVICE); 
+	    data.add("DISPLAY: " + Build.DISPLAY); 
+	    data.add("BRAND: " + Build.BRAND); 
+	    data.add("BOARD: " + Build.BOARD); 
+	    data.add("FINGERPRINT: " + Build.FINGERPRINT); 
+	    data.add("ID: " + Build.ID); 
+	    data.add("MANUFACTURER: " + Build.MANUFACTURER); 
+	    data.add("USER: " + Build.USER);
 	    return data;
 	}
 	
